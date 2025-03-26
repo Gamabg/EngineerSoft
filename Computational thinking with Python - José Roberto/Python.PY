@@ -25,3 +25,5 @@ n2 = int(input('Digite o numero 2'))
 
 divisao = 7 // 2
 7 % 2
+
+#Exc 5
