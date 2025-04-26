@@ -1,11 +1,34 @@
 :root{
     --color--blue :#002;
     --color--light :#f4f4f4;
-    
+    --color--pink :#dc143c;
+    --bg--gradient:linear-gradient(to right, rgba(0,0,0, .6), rgba(0,0,0, .3));
 } 
 
 *{
+    font-family: "Poppins", sans-serif;
     margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color--light);
+    font-weight: 600;
+    transition: color .7s;
+}
+
+a:hover {
+    color: var(--color--pink);
+
 }
 
 .container {
@@ -23,11 +46,37 @@
 }
 
 .bg-image-1{
-    background-image: url(../vinicolas/pexels-tim-mossholder-2331884.jpg);
+    background-image: var(--bg--gradient),
+    url(../vinicolas/pexels-tim-mossholder-2331884.jpg);
 }
 
 .bg-image-2{
     background-image: url(../vinicolas/pexels-kadir-15011079.jpg);
+
 }
 
+.header-page{
+    width: 100%;
+    height: 100px;
+    /* background-color: gold; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.header-menu ul{
+    display: flex;
+    gap: 20px;
+}
+
+.hero{
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #dc143c; */
+    gap: 20px;
+}
 /* normalize css */
