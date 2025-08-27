@@ -45,7 +45,6 @@ if tupla[1] > maior:
 print(maior)
 
 # ex5
-
 numero = int(input('Digite um numero: '))
 
 if numero > 10 and numero < 50:
