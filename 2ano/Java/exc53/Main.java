@@ -1,9 +1,9 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        HashMap<Integer, Cliente> clientes = new HashMap<>();
+        ArrayList<Cliente> clientes = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
 
@@ -41,7 +41,7 @@ public class Main {
             System.out.print("Digite o e-mail do cliente: ");
             c.setEmail(sc.nextLine());
 
-            clientes.put(id, c);
+            clientes.add(c);
 
             String resposta;
             while (true) {
@@ -60,13 +60,13 @@ public class Main {
         }
 
         System.out.println("\n..:: Clientes Cadastrados ::..");
-        clientes.forEach((chave, valor) -> {
-            System.out.println("Cliente " + chave);
+        for (Cliente valor : clientes) {
+            System.out.println("Cliente " + valor.getId());
             System.out.println("Nome: " + valor.getNome());
             System.out.println("Idade: " + valor.getIdade());
             System.out.println("E-mail: " + valor.getEmail());
             System.out.println("--------------------------");
-        });
+        }
 
         sc.close();
     }

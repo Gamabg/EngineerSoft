@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
 
-        HashMap<Integer, Cliente> listaClientes = new HashMap<Integer, Cliente>();
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 
         int opcao = 0;
         int id;
@@ -76,13 +76,13 @@ public class Main {
                     cliente.setConta(null);
                 }
 
-                listaClientes.put(id_cliente, cliente);
+                listaClientes.add(cliente);
 
                 System.out.println("Cliente incluído com sucesso!\n");
             } else if (opcao == 2) {
-                listaClientes.forEach((chave, valor) -> {
-                    System.out.println("ID: " + chave + " - " + valor.exibirNomeIdade());
-                });
+                for (Cliente valor : listaClientes) {
+                    System.out.println("ID: " + valor.getId() + " - " + valor.exibirNomeIdade());
+                }
 
                 System.out.print("Digite o ID do cliente que você deseja atualizar: ");
                 try {
@@ -92,9 +92,9 @@ public class Main {
                     continue;
                 }
 
-                if (listaClientes.containsKey(id)) {
-                    cli = listaClientes.get(id);
+                cli = buscarPorId(listaClientes, id);
 
+                if (cli != null) {
                     System.out.print("Digite o seu novo nome: ");
                     cli.setNome(ler.nextLine());
 
@@ -113,9 +113,9 @@ public class Main {
                     System.out.println("Cliente não encontrado!\n");
                 }
             } else if (opcao == 3) {
-                listaClientes.forEach((chave, valor) -> {
-                    System.out.println("ID: " + chave + " - " + valor.exibirNomeIdade());
-                });
+                for (Cliente valor : listaClientes) {
+                    System.out.println("ID: " + valor.getId() + " - " + valor.exibirNomeIdade());
+                }
 
                 System.out.print("Digite o ID do cliente que você deseja excluir: ");
                 try {
@@ -125,24 +125,35 @@ public class Main {
                     continue;
                 }
 
-                if (listaClientes.containsKey(id)) {
-                    listaClientes.remove(id);
+                cli = buscarPorId(listaClientes, id);
+
+                if (cli != null) {
+                    listaClientes.remove(cli);
                     System.out.println("Cliente excluído com sucesso!\n");
                 } else {
                     System.out.println("Cliente não encontrado!\n");
                 }
             } else if (opcao == 4) {
-                listaClientes.forEach((chave, valor) -> {
-                    System.out.println("ID: " + chave + " - " + valor.exibirNomeIdade());
+                for (Cliente valor : listaClientes) {
+                    System.out.println("ID: " + valor.getId() + " - " + valor.exibirNomeIdade());
 
                     if (valor.getConta() != null)
                         System.out.println(valor.exibirDadosConta());
-                });
+                }
                 System.out.println();
             }
 
         } while ((opcao >= 1) && (opcao <= 4));
 
         ler.close();
+    }
+
+    private static Cliente buscarPorId(ArrayList<Cliente> lista, int id) {
+        for (Cliente c : lista) {
+            if (c.getId() == id) {
+                return c;
+            }
+        }
+        return null;
     }
 }
