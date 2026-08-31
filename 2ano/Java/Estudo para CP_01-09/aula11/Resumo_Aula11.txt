@@ -1,0 +1,18 @@
+| Método                  | Pense em...                   |
+| ----------------------- | ----------------------------- |
+| `charAt()`              | pegar 1 caractere             |
+| `codePointAt()`         | código Unicode                |
+| `compareTo()`           | comparar String               |
+| `compareToIgnoreCase()` | comparar ignorando maiúsculas |
+| `startsWith()`          | começa com?                   |
+| `endsWith()`            | termina com?                  |
+| `toCharArray()`         | String → `char[]`             |
+| `getBytes()`            | String → `byte[]`             |
+| `isEmpty()`             | está vazia?                   |
+| `split()`               | quebrar String                |
+| `substring()`           | pegar pedaço                  |
+| `toLowerCase()`         | minúsculo                     |
+| `toUpperCase()`         | maiúsculo                     |
+| `trim()`                | remover espaços laterais      |
+| `valueOf()`             | transformar em String         |
+| `format()`              | formatar texto                |
