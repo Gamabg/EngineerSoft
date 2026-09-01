@@ -1,0 +1,13 @@
+🧠 RESUMÃO FINAL DA AULA 12
+
+Guarda esse quadro:
+
+Comando	Significado
+try	tenta executar
+catch	captura/trata erro
+finally	executa no final
+throw	lança uma exceção
+throws	declara que o método pode lançar
+Exception	problemas que podemos tratar
+Error	problemas graves da JVM
+extends Exception	cria uma Checked Exception

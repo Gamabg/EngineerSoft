@@ -1,0 +1,5 @@
+| Collection  | Pense em   | Aceita repetidos?  | Acesso         |
+| ----------- | ---------- | ----------------:  | -------------- |
+| `ArrayList` | Lista      |                 ✅ | índice         |
+| `HashSet`   | Conjunto   |                 ❌ | não usa índice |
+| `HashMap`   | Dicionário |       chave única | chave          |

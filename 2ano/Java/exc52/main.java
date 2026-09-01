@@ -2,56 +2,80 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class main {
+public class Main {
+    private static String lerLinha(Scanner sc, String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            if (!sc.hasNextLine()) {
+                System.out.println("\nEntrada encerrada. Finalizando...");
+                System.exit(0);
+            }
 
-    public static void Main(String[] args) {
+            String linha = sc.nextLine().trim();
+            if (!linha.isEmpty()) {
+                return linha;
+            }
+
+            System.out.println("Valor vazio. Tente novamente.");
+        }
+    }
+
+    private static int lerInteiro(Scanner sc, String mensagem) {
+        while (true) {
+            String valor = lerLinha(sc, mensagem);
+            try {
+                return Integer.parseInt(valor);
+            } catch (NumberFormatException e) {
+                System.out.println("Digite um número inteiro válido.");
+            }
+        }
+    }
+
+    private static double lerDouble(Scanner sc, String mensagem) {
+        while (true) {
+            String valor = lerLinha(sc, mensagem);
+            try {
+                return Double.parseDouble(valor);
+            } catch (NumberFormatException e) {
+                System.out.println("Digite um número válido.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Map<Integer, produto> produtos = new HashMap<>();
+        Map<Integer, Produto> produtos = new HashMap<>();
 
         boolean continuar = true;
 
         while (continuar) {
             System.out.println("\n===== Cadastro de Produto =====");
 
-            System.out.print("ID do produto: ");
-            int id = Integer.parseInt(sc.nextLine().trim());
-
-            System.out.print("Nome do produto: ");
-            String nome = sc.nextLine().trim();
-
-            System.out.print("Preco do produto: ");
-            double preco = Double.parseDouble(sc.nextLine().trim());
-
-            System.out.print("Quantidade do produto: ");
-            double quantidade = Double.parseDouble(sc.nextLine().trim());
+            int id = lerInteiro(sc, "ID do produto: ");
+            String nome = lerLinha(sc, "Nome do produto: ");
+            double preco = lerDouble(sc, "Preco do produto: ");
+            double quantidade = lerDouble(sc, "Quantidade do produto: ");
 
             Categoria categoria = null;
 
-            System.out.print("Este produto possui categoria? (s/n): ");
-            String resposta = sc.nextLine().trim().toLowerCase();
-
+            String resposta = lerLinha(sc, "Este produto possui categoria? (s/n): ").toLowerCase();
             if (resposta.equals("s")) {
-                System.out.print("ID da categoria: ");
-                int catId = Integer.parseInt(sc.nextLine().trim());
-
-                System.out.print("Nome da categoria: ");
-                String catNome = sc.nextLine().trim();
-
+                int catId = lerInteiro(sc, "ID da categoria: ");
+                String catNome = lerLinha(sc, "Nome da categoria: ");
                 categoria = new Categoria(catId, catNome);
             }
 
-            produto produto = new produto(id, nome, preco, quantidade, categoria);
+            Produto produto = new Produto(id, nome, preco, quantidade, categoria);
             produtos.put(id, produto);
 
-            System.out.print("\nDeseja cadastrar outro produto? (s/n): ");
-            String outra = sc.nextLine().trim().toLowerCase();
+            String outra = lerLinha(sc, "\nDeseja cadastrar outro produto? (s/n): ").toLowerCase();
             if (!outra.equals("s")) {
                 continuar = false;
             }
         }
 
         System.out.println("\n===== Produtos Cadastrados =====");
-        for (produto p : produtos.values()) {
+        for (Produto p : produtos.values()) {
             System.out.println("--------------------------------");
             System.out.println(p.exibirNomePreco());
             System.out.println(p.exibirNomeQuantidade());
